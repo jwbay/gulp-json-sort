@@ -1,0 +1,4 @@
+node_modules/
+test/*.js
+typings/**/*.d.ts
+!typings/*.d.ts

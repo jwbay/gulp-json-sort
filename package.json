@@ -1,0 +1,30 @@
+{
+  "name": "gulp-json-sort",
+  "version": "0.0.1",
+  "description": "Gulp plugin for deterministic sorting of JSON file structures by key",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "gulpplugin",
+    "json",
+    "sort",
+    "alphabetize"
+  ],
+  "author": "justin.bay@gmail.com",
+  "license": "MIT",
+  "dependencies": {
+    "gulp-util": "^3.0.6",
+    "through2": "^2.0.0"
+  },
+  "devDependencies": {
+    "mocha": "^2.2.5",
+    "should": "^7.0.2",
+    "stream-array": "^1.1.0",
+    "stream-assert": "^2.0.2"
+  }
+}

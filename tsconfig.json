@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "noEmitOnError": true,
+    "noImplicitAny": true,
+    "sourceMap": false,
+    "target": "es5"
+  },
+  "files": [
+    "index.ts",
+    "test/main.ts",
+    "test/test-stream.ts",
+    "typings/misc.d.ts",
+    "typings/tsd.d.ts"
+  ]
+}
