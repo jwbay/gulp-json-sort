@@ -18,7 +18,7 @@ interface IOptions {
 const pluginName = 'gulp-json-sort';
 
 export default function (options?: IOptions) {
-    function onFile(file: File, enc: string, done: Function) {
+    return through.obj(function (file: File, enc: string, done: Function) {
         if (file.isStream()) {
             this.emit('error', new PluginError(pluginName, 'Streams not supported'));
             this.push(file);
@@ -38,10 +38,8 @@ export default function (options?: IOptions) {
         } catch (e) {
             this.emit('error', e);
         }
-        
+
         this.push(file);
         return done();
-    }
-
-    return through.obj(onFile);
+    });
 }

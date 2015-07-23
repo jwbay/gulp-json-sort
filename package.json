@@ -1,7 +1,7 @@
 {
   "name": "gulp-json-sort",
   "version": "0.0.1",
-  "description": "Gulp plugin for deterministic sorting of JSON file structures by key",
+  "description": "Gulp plugin for deterministic sorting of JSON file structures",
   "main": "index.js",
   "directories": {
     "test": "test"
@@ -19,6 +19,7 @@
   "license": "MIT",
   "dependencies": {
     "gulp-util": "^3.0.6",
+    "json-stable-stringify": "^1.0.0",
     "through2": "^2.0.0"
   },
   "devDependencies": {

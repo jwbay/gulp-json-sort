@@ -4,7 +4,7 @@ var stringify = require('json-stable-stringify');
 var gulp_util_1 = require('gulp-util');
 var pluginName = 'gulp-json-sort';
 function default_1(options) {
-    function onFile(file, enc, done) {
+    return through.obj(function (file, enc, done) {
         if (file.isStream()) {
             this.emit('error', new gulp_util_1.PluginError(pluginName, 'Streams not supported'));
             this.push(file);
@@ -25,7 +25,6 @@ function default_1(options) {
         }
         this.push(file);
         return done();
-    }
-    return through.obj(onFile);
+    });
 }
 exports.default = default_1;
