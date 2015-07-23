@@ -33,4 +33,32 @@ describe('gulp-json-sort', () => {
             .pipe(assert.length(1))
             .pipe(assert.end(done));
     });
+
+    it('should sort json', done => {
+        testObjects({ a: 0, c: 0, b: 0, d: 0, f: 0, e: 0 })
+            .pipe(sort())
+            .pipe(assert.first(contentsEqual('{"a":0,"b":0,"c":0,"d":0,"e":0,"f":0}')))
+            .pipe(assert.end(done));
+    });
+
+    it('should pass through comparator', done => {
+        testObjects({ a: 0, c: 0, b: 0, d: 0, f: 0, e: 0 })
+            .pipe(sort({ compare: (left, right) => left.key < right.key ? 1 : -1 }))
+            .pipe(assert.first(contentsEqual('{"f":0,"e":0,"d":0,"c":0,"b":0,"a":0}')))
+            .pipe(assert.end(done));
+    });
+
+    it('should pass through spaces', done => {
+        testObjects({ b: 0, a: 0 })
+            .pipe(sort({ spaces: 2 }))
+            .pipe(assert.first(contentsEqual('{\n  "a": 0,\n  "b": 0\n}')))
+            .pipe(assert.end(done));
+    });
+
+    it('should pass through replacer', done => {
+        testObjects({ b: 1, a: 2 })
+            .pipe(sort({ replacer: (k, v) => v + 5 }))
+            .pipe(assert.first(contentsEqual('{"a":7,"b":6}')))
+            .pipe(assert.end(done));
+    });
 });
