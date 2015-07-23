@@ -30,9 +30,10 @@ declare module 'json-stable-stringify' {
     }
 
     interface options {
-        spaces?: number | string;
+        cmp?: (first: kvp, second: kvp) => number;
+        cycles?: boolean;
         replacer?: (key: string, value: any) => any;
-        compare?: (first: kvp, second: kvp) => number;
+        space?: number | string;        
     }
 
     var _: (object: any, options?: options) => string;

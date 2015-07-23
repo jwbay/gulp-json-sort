@@ -4,8 +4,6 @@ var stringify = require('json-stable-stringify');
 var gulp_util_1 = require('gulp-util');
 var pluginName = 'gulp-json-sort';
 function default_1(options) {
-    if (options === void 0) { options = {}; }
-    var _a = options.spaces, spaces = _a === void 0 ? 0 : _a, replacer = options.replacer, compare = options.compare;
     function onFile(file, enc, done) {
         if (file.isStream()) {
             this.emit('error', new gulp_util_1.PluginError(pluginName, 'Streams not supported'));
@@ -19,11 +17,7 @@ function default_1(options) {
         try {
             var jsonString = file.contents.toString();
             var parsedObject = JSON.parse(jsonString);
-            var sortedString = stringify(parsedObject, {
-                space: spaces,
-                cmp: compare,
-                replacer: replacer
-            });
+            var sortedString = stringify(parsedObject, options);
             file.contents = new Buffer(sortedString);
         }
         catch (e) {

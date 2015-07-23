@@ -9,20 +9,15 @@ interface IKeyValuePair {
 }
 
 interface IOptions {
-    spaces?: number | string;
+    cmp?: (first: IKeyValuePair, second: IKeyValuePair) => number;
+    cycles?: boolean;
     replacer?: (key: string, value: any) => any;
-    compare?: (left: IKeyValuePair, right: IKeyValuePair) => number;
+    space?: number | string;      
 }
 
 const pluginName = 'gulp-json-sort';
 
-export default function (options: IOptions = {}) {
-    const {
-        spaces = 0,
-        replacer,
-        compare
-    } = options;
-    
+export default function (options?: IOptions) {
     function onFile(file: File, enc: string, done: Function) {
         if (file.isStream()) {
             this.emit('error', new PluginError(pluginName, 'Streams not supported'));
@@ -38,11 +33,7 @@ export default function (options: IOptions = {}) {
         try {
             const jsonString = file.contents.toString();
             const parsedObject = JSON.parse(jsonString);
-            const sortedString = stringify(parsedObject, {
-                space: spaces,
-                cmp: compare,
-                replacer: replacer
-            });
+            const sortedString = stringify(parsedObject, options);
             file.contents = new Buffer(sortedString);
         } catch (e) {
             this.emit('error', e);
