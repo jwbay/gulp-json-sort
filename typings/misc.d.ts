@@ -4,7 +4,7 @@ declare module 'stream-array' {
     }
 
     var _: streamify;
-    export default _;
+    export = _;
 }
 
 declare module 'stream-assert' {
@@ -20,5 +20,21 @@ declare module 'stream-assert' {
     }
 
     var _: streamAssert;
-    export default _;
+    export = _;
+}
+
+declare module 'json-stable-stringify' {
+    interface kvp {
+        key: string,
+        value: any
+    }
+
+    interface options {
+        spaces?: number | string;
+        replacer?: (key: string, value: any) => any;
+        compare?: (first: kvp, second: kvp) => number;
+    }
+
+    var _: (object: any, options?: options) => string;
+    export = _
 }
