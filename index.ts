@@ -1,5 +1,6 @@
 ﻿'use strict';
 import * as through from 'through2';
+import * as stringify from 'json-stable-stringify';
 import { File, PluginError } from 'gulp-util';
 
 interface IKeyValuePair {
@@ -10,13 +11,13 @@ interface IKeyValuePair {
 interface IOptions {
     spaces?: number | string;
     replacer?: (key: string, value: any) => any;
-    compare?: (first: IKeyValuePair, second: IKeyValuePair) => number;
+    compare?: (left: IKeyValuePair, right: IKeyValuePair) => number;
 }
 
 const pluginName = 'gulp-json-sort';
 
 export default function (options: IOptions = {}) {
-    let {
+    const {
         spaces = 0,
         replacer,
         compare
@@ -25,6 +26,7 @@ export default function (options: IOptions = {}) {
     function onFile(file: File, enc: string, done: Function) {
         if (file.isStream()) {
             this.emit('error', new PluginError(pluginName, 'Streams not supported'));
+            this.push(file);
             return done();
         }
 
@@ -33,6 +35,19 @@ export default function (options: IOptions = {}) {
             return done();
         }
 
+        try {
+            const jsonString = file.contents.toString();
+            const parsedObject = JSON.parse(jsonString);
+            const sortedString = stringify(parsedObject, {
+                space: spaces,
+                cmp: compare,
+                replacer: replacer
+            });
+            file.contents = new Buffer(sortedString);
+        } catch (e) {
+            this.emit('error', e);
+        }
+        
         this.push(file);
         return done();
     }

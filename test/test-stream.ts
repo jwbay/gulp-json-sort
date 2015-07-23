@@ -6,7 +6,6 @@ export default function (...fileContents: Array<Buffer | NodeJS.ReadWriteStream>
 
     function create(contents: any) {
         return new File({
-            path: '/home/file' + (i++).toString() + '.json',
             contents: contents
         });
     }

@@ -35,9 +35,10 @@ describe('gulp-json-sort', () => {
     });
 
     it('should sort json', done => {
-        testObjects({ a: 0, c: 0, b: 0, d: 0, f: 0, e: 0 })
+        let obj = { z: 0, a: 0, c: 0, b: 0, d: 0, f: 0, e: 0 }
+        testObjects(obj)
             .pipe(sort())
-            .pipe(assert.first(contentsEqual('{"a":0,"b":0,"c":0,"d":0,"e":0,"f":0}')))
+            .pipe(assert.first(contentsEqual('{"a":0,"b":0,"c":0,"d":0,"e":0,"f":0,"z":0}')))
             .pipe(assert.end(done));
     });
 
@@ -57,7 +58,7 @@ describe('gulp-json-sort', () => {
 
     it('should pass through replacer', done => {
         testObjects({ b: 1, a: 2 })
-            .pipe(sort({ replacer: (k, v) => v + 5 }))
+            .pipe(sort({ replacer: (k, v) => k ? v + 5 : v }))
             .pipe(assert.first(contentsEqual('{"a":7,"b":6}')))
             .pipe(assert.end(done));
     });
