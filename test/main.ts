@@ -7,8 +7,6 @@ import { Transform } from 'stream';
 import sort from '../index';
 import 'should';
 
-//go travis go
-
 function testRaw(contents: any) {
     const stream: Transform = <any>through.obj();
     stream.push(new File({ contents: contents }));
