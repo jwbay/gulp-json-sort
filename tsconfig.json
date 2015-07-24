@@ -9,7 +9,7 @@
   "files": [
     "index.ts",
     "test/main.ts",
-    "typings/misc.d.ts",
+    "misc.d.ts",
     "typings/tsd.d.ts"
   ]
 }
