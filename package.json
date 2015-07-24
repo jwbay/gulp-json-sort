@@ -1,7 +1,7 @@
 {
   "name": "gulp-json-sort",
   "version": "0.0.1",
-  "description": "Gulp plugin for deterministic sorting of JSON file structures",
+  "description": "Gulp plugin for deterministic sorting of JSON files",
   "main": "index.js",
   "directories": {
     "test": "test"

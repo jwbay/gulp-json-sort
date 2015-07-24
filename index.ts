@@ -12,7 +12,7 @@ interface IOptions {
     cmp?: (first: IKeyValuePair, second: IKeyValuePair) => number;
     cycles?: boolean;
     replacer?: (key: string, value: any) => any;
-    space?: number | string;      
+    space?: number | string;
 }
 
 const pluginName = 'gulp-json-sort';
