@@ -1,12 +1,3 @@
-declare module 'stream-array' {
-    interface streamify {
-        (array: any[]): NodeJS.ReadableStream;
-    }
-
-    var _: streamify;
-    export = _;
-}
-
 declare module 'stream-assert' {
     interface streamAssert {
         nth(n: number, assertion: Function): NodeJS.ReadWriteStream;

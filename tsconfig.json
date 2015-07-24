@@ -9,7 +9,6 @@
   "files": [
     "index.ts",
     "test/main.ts",
-    "test/test-stream.ts",
     "typings/misc.d.ts",
     "typings/tsd.d.ts"
   ]
