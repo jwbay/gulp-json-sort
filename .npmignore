@@ -3,3 +3,4 @@ test/
 typings/
 tsd.json
 tsconfig.json
+.travis.yml
